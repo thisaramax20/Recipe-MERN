@@ -2,6 +2,9 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import { userRouter } from "./routes/userRoutes.js";
+import dbConnect from "./config/dbConnect.js";
+
 dotenv.config();
 
 const app = express();
@@ -11,7 +14,10 @@ app.use(cors());
 app.use(express.json());
 
 //connect to mongodb
-mongoose.connect(process.env.MONGO_CONNECTION_STRING);
+dbConnect();
+
+//routes
+app.use("/api/users", userRouter);
 
 //server
 const port = process.env.PORT || 3002;

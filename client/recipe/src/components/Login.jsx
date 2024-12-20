@@ -20,6 +20,7 @@ const Login = () => {
       setPassword={setPassword}
       setUsername={setUsername}
       username={username}
+      label={"Login"}
     />
   );
 };

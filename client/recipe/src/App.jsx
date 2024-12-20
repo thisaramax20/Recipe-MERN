@@ -5,6 +5,7 @@ import Auth from "./pages/Auth";
 import CreateRecipe from "./pages/CreateRecipe";
 import SavedRecipe from "./pages/SavedRecipe";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/create-recipe" element={<CreateRecipe />} />
           <Route path="/saved-recipe" element={<SavedRecipe />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

@@ -1,8 +1,17 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [cookies, setCookies] = useCookies(["access-token"]);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setCookies("access-token", "");
+    window.localStorage.removeItem("userID");
+    navigate("/auth");
+  };
 
   return (
     <nav className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-4 shadow-lg">
@@ -32,12 +41,16 @@ const Navbar = () => {
           >
             Saved Recipe
           </Link>
-          <Link
-            to="/auth"
-            className="text-white hover:text-yellow-300 transition duration-300"
-          >
-            Login/Register
-          </Link>
+          {!cookies["access_token"] ? (
+            <Link
+              to="/auth"
+              className="text-white hover:text-yellow-300 transition duration-300"
+            >
+              Login/Register
+            </Link>
+          ) : (
+            <button onClick={handleLogout}>Logout</button>
+          )}
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -85,12 +98,16 @@ const Navbar = () => {
           >
             Saved Recipe
           </Link>
-          <Link
-            to="/auth"
-            className="block text-white hover:text-yellow-300 transition duration-300"
-          >
-            Login/Register
-          </Link>
+          {!cookies["access_token"] ? (
+            <Link
+              to="/auth"
+              className="text-white hover:text-yellow-300 transition duration-300"
+            >
+              Login/Register
+            </Link>
+          ) : (
+            <button onClick={handleLogout}>Logout</button>
+          )}
         </div>
       )}
     </nav>

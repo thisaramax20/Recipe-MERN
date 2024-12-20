@@ -6,6 +6,7 @@ import CreateRecipe from "./pages/CreateRecipe";
 import SavedRecipe from "./pages/SavedRecipe";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   return (
@@ -13,10 +14,12 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<Home />}>
+            <Route path="create-recipe" element={<CreateRecipe />} />
+            <Route path="saved-recipe" element={<SavedRecipe />} />
+          </Route>
           <Route path="/auth" element={<Auth />} />
-          <Route path="/create-recipe" element={<CreateRecipe />} />
-          <Route path="/saved-recipe" element={<SavedRecipe />} />
         </Routes>
         <Footer />
       </BrowserRouter>

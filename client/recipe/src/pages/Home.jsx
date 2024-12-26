@@ -10,6 +10,14 @@ const Home = () => {
           <ul>
             <li className="mb-4">
               <Link
+                to="/home/dashboard"
+                className="block text-lg py-2 px-4 rounded hover:bg-green-500"
+              >
+                Home
+              </Link>
+            </li>
+            <li className="mb-4">
+              <Link
                 to="/home/create-recipe"
                 className="block text-lg py-2 px-4 rounded hover:bg-green-500"
               >
